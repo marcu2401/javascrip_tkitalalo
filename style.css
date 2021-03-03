@@ -128,5 +128,37 @@ body{
     width:60%;
     height: 55%;
 }
-
+@media (max-width:500px){
+    .wrapper .div1 .header{
+        height: 5vh;
+    }
+    .wrapper .div1 .header .head h2{
+        font-size: 1rem;
+    }
+    #section1{
+        padding-top: 110px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    #proba{
+        width: 35vw;
+        height: 8vh;
+    }
+    #boldogkep img{
+        display: none;
+        width:70%;
+        height: 65%;
+    }
+    #yes{
+        width: 25vw ;
+        height: 6vh;
+    }
+    #no{
+        width: 25vw ;
+        height: 6vh;
+    }
+    
+}
 
