@@ -128,9 +128,13 @@
             nyeres.style.display="none";
             randomszam=(Math.floor(Math.random()*101));
             ujra1.style.display="none";
+            eredmeny.innerHTML = "Gondoltam egy új számra! Próbáld meg kitalálni!";
         }
         function no(){
             ujra1.style.display="none";
+            eredmeny.innerHTML = "Köszönön hogy velem játszottál! :)";
+            probaszam.style.display="none";
+            proba.style.display="none";
         }
 
         proba.addEventListener("click", kitalal);
