@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Stick&display=swap" rel="stylesheet">  
+    <title>Kalkulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+<br><br>
+<div class="div1">
+        <header class="header">
+            <h1 >Kitalálod?</h1>
+            <div class="head">
+                <h2 id="eredmenyp">Gondoltam egy számra (1-100) próbáld meg kitalálni!</h2>
+            </div>
+        </header>
+
+        <section id="section1"> 
+            <br><br>
+            <input class="bemenet" id="bemenetid" type="number" placeholder="Írj be egy számot!"> <button
+                id="proba">Próba</button>
+            
+            <div id="ujra">
+                <p>Szeretnéd ujra futtatni?</p><button id="yes">IGEN</button><button id="no">NEM</button>
+            </div>
+        </section>
+
+        <div id="boldogkep">
+            <img src="img/sucess.svg" alt="" id="boldogkep2">
+        </div> 
+</div>
+
+</div>
+
+    
+    <script>
+
+        
+        const probaszam = document.getElementById("bemenetid")
+        const eredmeny = document.getElementById("eredmenyp");
+        const proba = document.getElementById("proba");
+        const nyeres = document.getElementById("boldogkep2");
+        const ujra1=document.getElementById("ujra");
+        const yes1=document.getElementById("yes");
+        const no1=document.getElementById("no");
+
+        randomszam=(Math.floor(Math.random()*101));
+        let probalkozasok=0;
+
+     
+        function kitalal() {
+            if (probaszam.value > randomszam ) {
+                    eredmeny.innerHTML = "Nagyobb szám mint amire gondoltam!";
+                    proba.innerHTML="Próbáld újra!";
+                    if(probaszam.value-randomszam<=10 && probaszam.value-randomszam>0){
+                        probalkozasok=probalkozasok;
+                    }
+                    else{
+                        probalkozasok+=1;
+                    }
+                }
+                if (probaszam.value < randomszam ) {
+                    eredmeny.innerHTML = "Kisseb mint amire gondoltam!";
+                    proba.innerHTML="Próbáld újra!";
+                  
+                    if(randomszam-probaszam.value<=10 && randomszam-probaszam.value>0){
+                        probalkozasok=probalkozasok;
+                    }
+                    else{
+                        probalkozasok+=1;
+                    }
+                
+                }
+                if (probaszam.value-randomszam<=10 && probaszam.value-randomszam>0) {
+                    eredmeny.innerHTML = "Nagyobb mint amire gondoltam de már közel jársz!";
+                    proba.innerHTML="Próbáld újra!";
+                   
+                    probalkozasok+=1;
+                }
+                if (randomszam-probaszam.value<=10 && randomszam-probaszam.value>0 ) {
+                    eredmeny.innerHTML = "Kisebb mint amire gondoltam de már közel jársz!";
+                    proba.innerHTML="Próbáld újra!";
+                  
+                    probalkozasok+=1;
+                }
+                if(randomszam==probaszam.value){
+                        probalkozasok+=1;
+                        eredmeny.innerHTML = "Gratulálok eltaláltad a számot! "+probalkozasok+"db próbálkozásból!";
+                        proba.innerHTML="Próba";
+                        probalkozasok=0;    
+                        if(probalkozasok<=10){
+                            megjelenit(nyeres);
+                            megjelenit(ujra1);
+                        }
+                          
+                    } 
+                if (probalkozasok>10){
+                        megjelenit(nyeres);
+                        megjelenit(ujra1); 
+                        eredmeny.innerHTML = "Sajnos nem maradt több próbád! Talán legközelebb!";
+                        proba.innerHTML="Próba";
+                        probalkozasok=0;    
+                        
+                }
+            }
+               
+         
+               
+                          
+
+       
+        function megjelenit(szam) {
+            if (szam.style.display === 'none') {
+                szam.style.display = 'flex';
+            } else {
+                szam.style.display = 'none';
+            }
+            }
+        function yes(){
+            nyeres.style.display="none";
+            randomszam=(Math.floor(Math.random()*101));
+            ujra1.style.display="none";
+        }
+        function no(){
+            ujra1.style.display="none";
+        }
+
+        proba.addEventListener("click", kitalal);
+        yes1.addEventListener("click", yes);
+        no1.addEventListener("click", no);
+    </script>
+
+
+</body>
+
+</html>
