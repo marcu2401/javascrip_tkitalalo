@@ -59,7 +59,7 @@
             if(probaszam.value>0 && probaszam.value<101){
                 if (probaszam.value > randomszam && probalkozasok<=10 ) {
                     if(probaszam.value-randomszam<=10 && probaszam.value-randomszam>0){
-                        eredmeny.innerHTML = "Nagyobb mint amire gondoltam de már közel jársz! " +(9-probalkozasok)+"db lehetőséged maradt!";
+                        eredmeny.innerHTML = "Nagyobb mint amire gondoltam de már közel jársz! " +(10-probalkozasok)+"db lehetőséged maradt!";
                         proba.innerHTML="Próbáld újra!";
                         probalkozasok+=1;
                     }
@@ -81,11 +81,11 @@
                         probalkozasok+=1;
                         }
                 }
-                else if(probalkozasok>10){
+                else if(probalkozasok>9){
                     eredmeny.innerHTML = "Sajnos nem maradt több lehetőséged!";
-                    proba.addEventListener("click", end);
-                    megjelenit(nyeres);
-                    megjelenit(ujra1);
+                    proba.firstChild.data="Vége";
+                    proba.addEventListener("click", vegevan);
+                    ujra1.style.display="flex";
                     probalkozasok=0;
 
                 }
@@ -93,9 +93,9 @@
                         probalkozasok+=1;
                         eredmeny.innerHTML = "Gratulálok eltaláltad a számot! "+probalkozasok+"db próbálkozásból!";
                         proba.firstChild.data="Vége";
-                        proba.addEventListener("click", end);
-                        megjelenit(nyeres);
-                        megjelenit(ujra1);
+                        proba.addEventListener("click", vegevan);
+                        nyeres.style.display="flex";
+                        ujra1.style.display="flex";
                         probalkozasok=0;
                 }
 
@@ -106,16 +106,8 @@
 
            
             }
-        function end(){
+        function vegevan(){
             eredmeny.innerHTML="A játék véget ért!";
-        }
-        function megjelenit(szam) {
-            if (szam.style.display == 'none') {
-                szam.style.display = 'flex';
-            } 
-            else {
-                szam.style.display = 'none';
-            }
         }
         function yes(){
             nyeres.style.display="none";
@@ -130,9 +122,10 @@
             eredmeny.innerHTML = "Köszönön hogy velem játszottál! :)";
             probaszam.style.display="none";
             proba.style.display="none";
+            nyeres.style.display="flex"
         }
         function alap(){
-            if (proba.addEventListener("click", end)){
+            if (proba.addEventListener("click", vegevan)){
                 proba.addEventListener("click", kitalal);
             }
             else{
