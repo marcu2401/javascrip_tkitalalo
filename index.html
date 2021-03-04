@@ -42,8 +42,7 @@
 
     
     <script>
-
-        window.addEventListener("load",alap);  
+ 
         const probaszam = document.getElementById("bemenetid")
         const eredmeny = document.getElementById("eredmenyp");
         const proba = document.getElementById("proba");
@@ -84,6 +83,7 @@
                 else if(probalkozasok>9){
                     eredmeny.innerHTML = "Sajnos nem maradt több lehetőséged!";
                     proba.firstChild.data="Vége";
+                    proba.removeEventListener;
                     proba.addEventListener("click", vegevan);
                     ujra1.style.display="flex";
                     probalkozasok=0;
@@ -93,7 +93,8 @@
                         probalkozasok+=1;
                         eredmeny.innerHTML = "Gratulálok eltaláltad a számot! "+probalkozasok+"db próbálkozásból!";
                         proba.firstChild.data="Vége";
-                        proba.addEventListener("click", vegevan);
+                        proba.removeEventListener;
+                        proba.addEventListener("click", vegevan)
                         nyeres.style.display="flex";
                         ujra1.style.display="flex";
                         probalkozasok=0;
@@ -110,12 +111,14 @@
             eredmeny.innerHTML="A játék véget ért!";
         }
         function yes(){
-            nyeres.style.display="none";
+            proba.removeEventListener;
+            proba.addEventListener("click", kitalal);
             randomszam=(Math.floor(Math.random()*101));
+            nyeres.style.display="none";
             ujra1.style.display="none";
             eredmeny.innerHTML = "Gondoltam egy új számra! Próbáld meg kitalálni!";
             proba.firstChild.data="Tipp";
-            proba.addEventListener("click", kitalal);
+           
         }
         function no(){
             ujra1.style.display="none";
@@ -124,16 +127,9 @@
             proba.style.display="none";
             nyeres.style.display="flex"
         }
-        function alap(){
-            if (proba.addEventListener("click", vegevan)){
-                proba.addEventListener("click", kitalal);
-            }
-            else{
-                proba.addEventListener("click", kitalal);
-            }
-        }
         yes1.addEventListener("click", yes);
         no1.addEventListener("click", no);
+        proba.addEventListener("click", kitalal)
     </script>
 
 
